@@ -4,8 +4,14 @@ import Image from "next/image";
 const Logo = () => {
   return (
     <div className="flex items-center space-x-2">
-      {/* Remove "../public" from the path */}
-      <Image src="/logo3.png" alt="Airbnb logo" className="w-72 h-16" width={100} height={70} />
+      <Image
+        src="/logo3.png"
+        alt="Airbnb logo"
+        width={282} 
+        height={70} 
+        // layout="intrinsic" // Keeps the image sharp and responsive
+        className="w-auto h-16 object-contain min-w-32" // Prevent skewing with object-contain
+      />
       {/* <span className="text-pink-600 text-xl font-semibold">airbnb</span> */}
     </div>
   );

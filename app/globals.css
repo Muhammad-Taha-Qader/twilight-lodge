@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 body {
-    color: #f6f3f0;
-    @apply bg-zinc-950; /* Tailwind classes */
+    /* color: #f6f3f0; */
+    @apply bg-zinc-950 text-base text-my-cocoa-50; /* Tailwind classes */
   }
