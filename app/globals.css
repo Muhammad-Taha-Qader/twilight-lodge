@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    color: #f6f3f0;
+    @apply bg-zinc-950; /* Tailwind classes */
+  }
