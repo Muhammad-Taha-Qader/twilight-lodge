@@ -1,0 +1,41 @@
+// {
+//   "extends": ["next/core-web-vitals", "next/typescript"]
+// }
+{
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "rules": {
+    "quotes": ["error", "double"],      // Enforces double quotes
+    "indent": ["error", 2],             // Enforces 2 spaces per indentation level
+    "semi": ["error", "always"]         // Enforces semicolons (optional but recommended)
+  }
+}
+
+// {
+//   "extends": [
+//     "next/core-web-vitals",
+//     "plugin:@typescript-eslint/recommended",
+//     "plugin:react/recommended",
+//     "plugin:react-hooks/recommended"
+//   ],
+//   "plugins": [
+//     "@typescript-eslint",
+//     "react",
+//     "react-hooks"
+//   ],
+//   "parser": "@typescript-eslint/parser",
+//   "parserOptions": {
+//     "ecmaVersion": 2020,
+//     "sourceType": "module",
+//     "ecmaFeatures": {
+//       "jsx": true
+//     }
+//   },
+//   "settings": {
+//     "react": {
+//       "version": "detect"
+//     }
+//   },
+//   "rules": {
+//     // You can add your custom rules here
+//   }
+// }
