@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa"; // Importing GitHub and L
 
 const FooterBottom = () => {
   return (
-    <div className="bg-zinc-900 py-4">
+    <div className="bg-black py-4">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between text-sm">
         {/* Left Side: Copyright and Links */}
         <div className="text-center md:text-left mb-4 md:mb-0">

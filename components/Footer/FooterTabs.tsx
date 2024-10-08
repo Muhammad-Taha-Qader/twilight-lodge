@@ -18,7 +18,7 @@ const FooterTabs = ({ activeTab, setActiveTab }: FooterTabsProps) => {
         <button
           key={tab}
           className={`py-2 px-4 ${
-            activeTab === tab ? "border-b-4 border-my-cocoa-700 text-my-cocoa-700" : ""
+            activeTab === tab ? "border-b-4 border-my-cocoa-700 text-my-cocoa-700 font-bold" : ""
           }`}
           onClick={() => setActiveTab(tab)} // Pass TabType to setActiveTab
         >

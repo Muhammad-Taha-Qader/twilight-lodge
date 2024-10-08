@@ -140,7 +140,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-zinc-900 py-8">
+    <footer className="bg-black py-8">
       <div className="max-w-7xl mx-auto px-4">
         {/* Upper Section */}
         <h2 className="text-lg font-semibold mb-6">Inspiration for future getaways</h2>
@@ -158,7 +158,9 @@ const Footer = () => {
           <FooterColumn title="Airbnb" items={["Newsroom", "New features", "Careers", "Investors", "Gift cards"]} />
           <FooterColumn title="Other" items={["Terms", "Privacy", "Sitemap"]} />
         </div>
-        <FooterBottom/>
+        <div className="mt-12 border-t pt-8 " >
+          <FooterBottom/>
+        </div>
       </div>
     </footer>
   );
