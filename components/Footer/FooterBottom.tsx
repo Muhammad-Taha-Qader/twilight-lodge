@@ -27,10 +27,10 @@ const FooterBottom = () => {
           {/* Social Media Links */}
           <div className="flex space-x-4">
             <a href="https://github.com/Muhammad-Taha-Qader" target="_blank" rel="noopener noreferrer">
-              <FaGithub className="text-lg" />
+              <FaGithub className="text-lg hover:text-my-cocoa-600" />
             </a>
             <a href="https://linkedin.com/in/Muhammad-taha-07a1a0228" target="_blank" rel="noopener noreferrer">
-              <FaLinkedin className="text-lg" />
+              <FaLinkedin className="text-lg hover:text-my-cocoa-600" />
             </a>
           </div>
         </div>
