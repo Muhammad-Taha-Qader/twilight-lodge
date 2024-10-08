@@ -7,6 +7,13 @@ const images = [
   "/Card/5.jpg",
   "/Card/3.webp",
 ];
+const images2 = [
+  "/Card/c1/c1.webp",
+  "/Card/c1/c2.webp",
+  "/Card/c1/c3.webp",
+  "/Card/c1/c4.webp",
+  "/Card/c1/c5.webp",
+];
 
 export default function Home() {
   return (
@@ -18,7 +25,19 @@ export default function Home() {
           title="Go VIP with Kevin Hart"
           host="Kevin Hart"
           isSoldOut={true}
+          images={images2}
+        />
+        <Card
+          title="Go VIP with Kevin Hart"
+          host="Kevin Hart"
+          isSoldOut={true}
           images={images}
+        />
+        <Card
+          title="Go VIP with Kevin Hart"
+          host="Kevin Hart"
+          isSoldOut={true}
+          images={images2}
         />
         <Card
           title="Go VIP with Kevin Hart"
@@ -36,19 +55,7 @@ export default function Home() {
           title="Go VIP with Kevin Hart"
           host="Kevin Hart"
           isSoldOut={true}
-          images={images}
-        />
-        <Card
-          title="Go VIP with Kevin Hart"
-          host="Kevin Hart"
-          isSoldOut={true}
-          images={images}
-        />
-        <Card
-          title="Go VIP with Kevin Hart"
-          host="Kevin Hart"
-          isSoldOut={true}
-          images={images}
+          images={images2}
         />
         <Card
           title="Go VIP with Kevin Hart"
