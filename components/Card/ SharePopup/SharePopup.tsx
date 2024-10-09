@@ -17,9 +17,14 @@ const SharePopup: React.FC<SharePopupProps> = ({isOpen, togglePopup}) => {
 
       {/* Popup Modal */}
       {isOpen && (
+        <>
+        {/* To add Bg overlay */}
+        <div className="fixed inset-0 bg-black opacity-50 z-40" onClick={togglePopup}>
+        </div>
+
         <div className="fixed inset-0 flex items-center justify-center z-50">
           {/* <div className="bg-gradient-to-tl from-my-cocoa-200  to-my-cocoa-950  text-my-cocoa-950 rounded-lg shadow-lg p-6 w-80"> */}
-          <div className="bg-zinc-950/80 text-my-cocoa-100 rounded-lg shadow-lg p-6 w-[500px]">
+          <div className="bg-zinc-950/80 shadow-my-cocoa-400/30 text-my-cocoa-100 rounded-lg shadow-lg p-6 w-[500px]">
 
             <button onClick={togglePopup} className="mt-4 text-my-cocoa-500 hover:text-my-cocoa-700">
               <SlClose className="text-2xl"/>
@@ -47,6 +52,7 @@ const SharePopup: React.FC<SharePopupProps> = ({isOpen, togglePopup}) => {
             </div>
           </div>
         </div>
+        </>
       )}
     </div>
   );

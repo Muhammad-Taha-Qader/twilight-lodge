@@ -81,7 +81,7 @@ import FooterBottom from "./FooterBottom";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 
 // Define a union type for the tabs
-type TabType = "Popular" | "Arts" | "Outdoors" | "Mountains";
+type TabType = "Popular" | "Arts" | "Outdoors" | "Mountains" | "Beach" | "ThingsToDo" | "Categories";
 
 // Define the shape of each tab content
 type Location = {
@@ -134,6 +134,22 @@ const Footer = () => {
       { title: "Mammoth Lakes", description: "Luxury homes" },
       { title: "Crested Butte", description: "Cabin rentals" },
     ],
+    Beach: [
+        { title: "Mammoth Lakes", description: "Luxury homes" },
+        { title: "Crested Butte", description: "Cabin rentals" },
+      ],
+    ThingsToDo: [
+        { title: "Mentone", description: "Cottage rentals" },
+        { title: "Telluride", description: "Mountain escapes" },
+        { title: "Mammoth Lakes", description: "Luxury homes" },
+        { title: "Crested Butte", description: "Cabin rentals" },
+      ],
+    Categories: [
+        { title: "Mentone", description: "Cottage rentals" },
+        { title: "Sedona", description: "Condo rentals" },
+        { title: "Helen", description: "Cabin rentals" },
+        { title: "Pine Mountain", description: "Vacation rentals" },
+      ],
   };
 
   // Show first 15 locations or all locations based on the showAll state

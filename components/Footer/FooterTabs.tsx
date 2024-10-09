@@ -2,7 +2,8 @@
 
 // components/FooterTabs.tsx
 
-type TabType = "Popular" | "Arts" | "Outdoors" | "Mountains";
+type TabType = "Popular" | "Arts" | "Outdoors" | "Mountains" | "Beach" | "ThingsToDo" | "Categories";
+
 
 interface FooterTabsProps {
   activeTab: TabType;
@@ -10,10 +11,10 @@ interface FooterTabsProps {
 }
 
 const FooterTabs = ({ activeTab, setActiveTab }: FooterTabsProps) => {
-  const tabs: TabType[] = ["Popular", "Arts", "Outdoors", "Mountains"];
+  const tabs: TabType[] = ["Popular", "Arts", "Outdoors", "Mountains" , "Beach", "ThingsToDo" ,"Categories"];
 
   return (
-    <div className="flex space-x-4 border-b mb-6">
+    <div className="flex space-x-4 border-b mb-6 overflow-x-scroll">
       {tabs.map((tab) => (
         <button
           key={tab}
