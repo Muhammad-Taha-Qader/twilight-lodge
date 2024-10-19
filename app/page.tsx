@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar/Navbar";
 import Card from "@/components/Card/Card";
+import CategoriesBar from "@/components/Navbar/CategoriesBar/CategoriesBar";
 
 const images = [
   "/Card/1.webp",
@@ -19,6 +20,7 @@ export default function Home() {
   return (
     <div>
       <Navbar />
+      <CategoriesBar/>
       <h2 className="py-4 text-2xl text-center font-bold">Past Experiences</h2>
       <div className="flex justify-center mt-10 gap-x-14 px-14 flex-wrap">
         <Card
