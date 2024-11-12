@@ -4,19 +4,21 @@ import CategoriesBar from "@/components/Navbar/CategoriesBar/CategoriesBar";
 import fs from "fs";
 import path from "path";
 
-interface Listing {
-  id: string;
-  title: string;
-  location: string;
-  distance: string;
-  dateRange: string;
-  price: number;
-  rating: number;
-  isFavorite: boolean;
-  isSoldOut: boolean;
-  images: string[];
-  description: string;
-}
+// interface Listing {
+//   id: string;
+//   title: string;
+//   location: string;
+//   distance: string;
+//   dateRange: string;
+//   price: number;
+//   rating: number;
+//   isFavorite: boolean;
+//   isSoldOut: boolean;
+//   images: string[];
+//   description: string;
+// }
+import { Listing } from "@/types/listing";
+
 
 // A helper function to fetch JSON data from the listings file
 async function getListingsData(): Promise<Listing[]> {
