@@ -2,18 +2,96 @@
     {
       "id": "1",
       "title": "Cozy Mountain Lodge",
-      "location": "Colorado",
+      "location": "Colorado, USA",
+      "distance": "500 kilometers",
+      "dateRange": "Nov 15 – Nov 20",
       "price": 150,
-      "description": "A beautiful lodge in the mountains.",
-      "availability": true
+      "rating": 4.75,
+      "isFavorite": true,
+      "isSoldOut": false,
+      "images": [
+        "/Card/1.webp",
+        "/Card/2.webp",
+        "/Card/5.jpg",
+        "/Card/3.webp"
+      ],
+      "description": "A beautiful lodge in the mountains with breathtaking views and cozy accommodations."
     },
     {
       "id": "2",
       "title": "Beachfront Bungalow",
-      "location": "Florida",
+      "location": "Miami, Florida, USA",
+      "distance": "1,200 kilometers",
+      "dateRange": "Dec 5 – Dec 10",
       "price": 200,
-      "description": "Enjoy the ocean view from this cozy bungalow.",
-      "availability": true
-    }
+      "rating": 4.88,
+      "isFavorite": false,
+      "isSoldOut": true,
+      "images": [
+        "/Card/c1/c1.webp",
+        "/Card/c1/c2.webp",
+        "/Card/c1/c3.webp",
+        "/Card/c1/c4.webp",
+        "/Card/c1/c5.webp"
+      ],
+      "description": "Enjoy the ocean view from this cozy beachfront bungalow, perfect for a relaxing getaway."
+    },
+    {
+        "id": "2",
+        "title": "Beachfront Bungalow",
+        "location": "Miami, Florida, USA",
+        "distance": "1,200 kilometers",
+        "dateRange": "Dec 5 – Dec 10",
+        "price": 200,
+        "rating": 4.88,
+        "isFavorite": false,
+        "isSoldOut": true,
+        "images": [
+          "/Card/c1/c1.webp",
+          "/Card/c1/c2.webp",
+          "/Card/c1/c3.webp",
+          "/Card/c1/c4.webp",
+          "/Card/c1/c5.webp"
+        ],
+        "description": "Enjoy the ocean view from this cozy beachfront bungalow, perfect for a relaxing getaway."
+      },
+      {
+        "id": "2",
+        "title": "Beachfront Bungalow",
+        "location": "Miami, Florida, USA",
+        "distance": "1,200 kilometers",
+        "dateRange": "Dec 5 – Dec 10",
+        "price": 200,
+        "rating": 4.88,
+        "isFavorite": false,
+        "isSoldOut": true,
+        "images": [
+          "/Card/c1/c1.webp",
+          "/Card/c1/c2.webp",
+          "/Card/c1/c3.webp",
+          "/Card/c1/c4.webp",
+          "/Card/c1/c5.webp"
+        ],
+        "description": "Enjoy the ocean view from this cozy beachfront bungalow, perfect for a relaxing getaway."
+      },
+      {
+        "id": "2",
+        "title": "Beachfront Bungalow",
+        "location": "Miami, Florida, USA",
+        "distance": "1,200 kilometers",
+        "dateRange": "Dec 5 – Dec 10",
+        "price": 200,
+        "rating": 4.88,
+        "isFavorite": false,
+        "isSoldOut": true,
+        "images": [
+          "/Card/c1/c1.webp",
+          "/Card/c1/c2.webp",
+          "/Card/c1/c3.webp",
+          "/Card/c1/c4.webp",
+          "/Card/c1/c5.webp"
+        ],
+        "description": "Enjoy the ocean view from this cozy beachfront bungalow, perfect for a relaxing getaway."
+      }
   ]
   

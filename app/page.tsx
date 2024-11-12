@@ -1,82 +1,54 @@
 import Navbar from "@/components/Navbar/Navbar";
 import Card from "@/components/Card/Card";
 import CategoriesBar from "@/components/Navbar/CategoriesBar/CategoriesBar";
+import fs from "fs";
+import path from "path";
 
-const images = [
-  "/Card/1.webp",
-  "/Card/2.webp",
-  "/Card/5.jpg",
-  "/Card/3.webp",
-];
-const images2 = [
-  "/Card/c1/c1.webp",
-  "/Card/c1/c2.webp",
-  "/Card/c1/c3.webp",
-  "/Card/c1/c4.webp",
-  "/Card/c1/c5.webp",
-];
+interface Listing {
+  id: string;
+  title: string;
+  location: string;
+  distance: string;
+  dateRange: string;
+  price: number;
+  rating: number;
+  isFavorite: boolean;
+  isSoldOut: boolean;
+  images: string[];
+  description: string;
+}
 
-export default function Home() {
+// A helper function to fetch JSON data from the listings file
+async function getListingsData(): Promise<Listing[]> {
+  const filePath = path.join(process.cwd(), "data", "listings.json");
+  const jsonData = await fs.promises.readFile(filePath, "utf-8");
+  return JSON.parse(jsonData);
+}
+
+export default async function Home() {
+  // Fetch listings data
+  const listings: Listing[] = await getListingsData();
+
   return (
     <div>
       <Navbar />
-      <CategoriesBar/>
+      <CategoriesBar />
       <h2 className="py-4 text-2xl text-center font-bold">Past Experiences</h2>
       <div className="flex justify-center mt-10 gap-x-14 px-14 flex-wrap">
-        <Card
-          title="Go VIP with Kevin Hart"
-          host="Kevin Hart"
-          isSoldOut={true}
-          images={images2}
-        />
-        <Card
-          title="Go VIP with Kevin Hart"
-          host="Kevin Hart"
-          isSoldOut={true}
-          images={images}
-        />
-        <Card
-          title="Go VIP with Kevin Hart"
-          host="Kevin Hart"
-          isSoldOut={true}
-          images={images2}
-        />
-        <Card
-          title="Go VIP with Kevin Hart"
-          host="Kevin Hart"
-          isSoldOut={true}
-          images={images}
-        />
-        <Card
-          title="Go VIP with Kevin Hart"
-          host="Kevin Hart"
-          isSoldOut={true}
-          images={images}
-        />
-        <Card
-          title="Go VIP with Kevin Hart"
-          host="Kevin Hart"
-          isSoldOut={true}
-          images={images2}
-        />
-        <Card
-          title="Go VIP with Kevin Hart"
-          host="Kevin Hart"
-          isSoldOut={true}
-          images={images}
-        />
-        <Card
-          title="Go VIP with Kevin Hart"
-          host="Kevin Hart"
-          isSoldOut={true}
-          images={images}
-        />
-        <Card
-          title="Go VIP with Kevin Hart"
-          host="Kevin Hart"
-          isSoldOut={true}
-          images={images}
-        />
+        {listings.map((listing: Listing) => (
+          <Card
+            key={listing.id}
+            title={listing.title}
+            location={listing.location}
+            distance={listing.distance}
+            dateRange={listing.dateRange}
+            price={listing.price}
+            rating={listing.rating}
+            isFavorite={listing.isFavorite}
+            isSoldOut={listing.isSoldOut}
+            images={listing.images}
+          />
+        ))}
       </div>
     </div>
   );
