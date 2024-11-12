@@ -1,0 +1,19 @@
+[
+    {
+      "id": "1",
+      "title": "Cozy Mountain Lodge",
+      "location": "Colorado",
+      "price": 150,
+      "description": "A beautiful lodge in the mountains.",
+      "availability": true
+    },
+    {
+      "id": "2",
+      "title": "Beachfront Bungalow",
+      "location": "Florida",
+      "price": 200,
+      "description": "Enjoy the ocean view from this cozy bungalow.",
+      "availability": true
+    }
+  ]
+  
