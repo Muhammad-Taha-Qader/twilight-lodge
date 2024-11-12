@@ -6,3 +6,27 @@ body {
     /* color: #f6f3f0; */
     @apply bg-zinc-950 text-base text-my-cocoa-50; /* Tailwind classes */
   }
+
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px; /* Adjust width for vertical scrollbar */
+  height: 12px; /* Adjust height for horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2); /* Semi-transparent track */
+  border-radius: 8px; /* Rounded track edges */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent thumb */
+  border-radius: 8px; /* Rounded thumb edges */
+  border: 2px solid rgba(0, 0, 0, 0.2); /* Border to separate thumb from track */
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.2);
+}
