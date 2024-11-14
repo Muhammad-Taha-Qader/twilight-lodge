@@ -1,12 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation"; // Use next/navigation instead of next/router for app directory
 import { HiOutlineShare } from "react-icons/hi";
-import { AiFillStar } from "react-icons/ai"; // For the star rating icon
+import { AiFillStar } from "react-icons/ai";
 import Carousel from "./Carousel";
 import SharePopup from "./ SharePopup/SharePopup";
 
 interface AirbnbCardProps {
+  id: string;
   title: string;
   location: string;
   distance: string;
@@ -19,6 +21,7 @@ interface AirbnbCardProps {
 }
 
 const Card: React.FC<AirbnbCardProps> = ({
+  id,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   title,
   location,
@@ -31,13 +34,21 @@ const Card: React.FC<AirbnbCardProps> = ({
   images,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter(); // now from next/navigation
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleCardClick = () => {
+    router.push(`/listings/${id}`);
+  };
+
   return (
-    <div className="max-w-sm rounded-lg overflow-hidden shadow-lg relative  ">
+    <div
+      onClick={handleCardClick}
+      className="max-w-sm rounded-lg overflow-hidden shadow-lg relative border border-gray-200 cursor-pointer"
+    >
       {/* Image Carousel */}
       <Carousel images={images} />
 
@@ -50,7 +61,10 @@ const Card: React.FC<AirbnbCardProps> = ({
 
       {/* Share Button */}
       <button
-        onClick={togglePopup}
+        onClick={(e) => {
+          e.stopPropagation(); // Prevent card click when sharing
+          togglePopup();
+        }}
         className="absolute top-2 right-2 bg-white hover:bg-gray-100 p-2 rounded-full shadow-md"
       >
         <HiOutlineShare className="text-gray-700" />
@@ -73,7 +87,9 @@ const Card: React.FC<AirbnbCardProps> = ({
         <p className="text-sm text-gray-500">{dateRange}</p>
 
         {/* Price */}
-        <p className="text-lg font-bold mt-2 text-gray-900">${price} <span className="text-sm font-normal text-gray-500">night</span></p>
+        <p className="text-lg font-bold mt-2 text-gray-900">
+          ${price} <span className="text-sm font-normal text-gray-500">night</span>
+        </p>
 
         {/* Availability Status */}
         <p className="text-sm font-semibold mt-2 text-red-600">
