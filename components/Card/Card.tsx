@@ -65,7 +65,7 @@ const Card: React.FC<AirbnbCardProps> = ({
           e.stopPropagation(); // Prevent card click when sharing
           togglePopup();
         }}
-        className="absolute top-2 right-2 bg-white hover:bg-gray-100 p-2 rounded-full shadow-md"
+        className="absolute top-2 right-2 bg-white hover:bg-gray-100 p-2 rounded-full shadow-md z-20"
       >
         <HiOutlineShare className="text-gray-700" />
       </button>

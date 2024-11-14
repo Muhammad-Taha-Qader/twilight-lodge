@@ -11,12 +11,14 @@ interface CarouselProps {
 const Carousel: React.FC<CarouselProps> = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const prevImage = () => {
+  const prevImage = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent card click when clicking on the carousel button
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
     // setCurrentIndex can be used in two ways: By passing a new value directly.  By passing a function that takes the current state (in this case currentIndex) as an argument (in this case prevIndex has currentIndex val), 
   };
 
-  const nextImage = () => {
+  const nextImage = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent card click when clicking on the carousel button
     setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
   };
 
@@ -46,13 +48,13 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
       {/* Navigation Buttons */}
       <button
         onClick={prevImage}
-        className="absolute top-1/2 left-2 transform -translate-y-1/2 hover:bg-my-cocoa-600 bg-my-cocoa-900 bg-opacity-50 rounded-full p-2">
+        className="absolute z-20 top-1/2 left-2 transform -translate-y-1/2 hover:bg-my-cocoa-600 bg-my-cocoa-900 bg-opacity-50 rounded-full p-2">
         {/* &#9664; */}
         <SlArrowLeft/>
       </button>
       <button
         onClick={nextImage}
-        className="absolute top-1/2 right-2 transform -translate-y-1/2 hover:bg-my-cocoa-600 bg-my-cocoa-900 bg-opacity-50 rounded-full p-2">
+        className="absolute z-20 top-1/2 right-2 transform -translate-y-1/2 hover:bg-my-cocoa-600 bg-my-cocoa-900 bg-opacity-50 rounded-full p-2">
         {/* &#9654; */}
         <SlArrowRight/>
       </button>
