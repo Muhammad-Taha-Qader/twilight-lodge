@@ -4,22 +4,43 @@
 // import { SearchIcon } from "@heroicons/react/outline";
 import { HiOutlineSearch } from "react-icons/hi";
 
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState  } from "react";
 interface NavbarProps {
   searchQuery: string;
   setSearchQuery: Dispatch<SetStateAction<string>>;
 }
 
 const SearchBar = ({searchQuery, setSearchQuery}: NavbarProps) => {
-  const handleSearchQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
-  };  
+  //without Debouncing:
+  // const handleSearchQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setSearchQuery(e.target.value);
+  // }; 
+  // onChange had:    <input type="text" value= {searchQuery}  placeholder="Search destinations" className="bg-transparent outline-none placeholder:text-my-cocoa-100" 
+  //                     onChange={handleSearchQuery}/> 
+  //with Debouncing:
+  const [inputValue, setInputValue] = useState(searchQuery);
+  
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setSearchQuery(inputValue);
+    }, 300); // Set the debounce delay here (e.g., 300ms)
+
+    // Clear the timeout if the user types again within 300ms
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [inputValue, setSearchQuery]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
   return (
     <div className="flex items-center space-x-4 border-2 border-my-cocoa-200 rounded-full px-8 py-3 shadow-lg hover:shadow-my-cocoa-900">
       <div className="flex flex-col">
         <span className="text-xs text-my-cocoa-400">Where</span>
-        <input type="text" value= {searchQuery}  placeholder="Search destinations" className="bg-transparent outline-none placeholder:text-my-cocoa-100" 
-          onChange={handleSearchQuery}/>
+        <input type="text" value= {inputValue}  placeholder="Search destinations" className="bg-transparent outline-none placeholder:text-my-cocoa-100" 
+          onChange={handleInputChange}/>
       </div>
       <div className="flex flex-col">
         <span className="text-xs text-my-cocoa-400">Check in</span>

@@ -20,7 +20,7 @@
     {
       "id": "2",
       "title": "Beachfront Bungalow",
-      "location": "Miami, Florida, USA",
+      "location": "Lahore, Pakistan",
       "distance": "1,200 kilometers",
       "dateRange": "Dec 5 – Dec 10",
       "price": 200,
@@ -39,7 +39,7 @@
     {
         "id": "3",
         "title": "Beachfront Bungalow",
-        "location": "Miami, Florida, USA",
+        "location": "Karachi, Pakistan",
         "distance": "1,200 kilometers",
         "dateRange": "Dec 5 – Dec 10",
         "price": 200,
