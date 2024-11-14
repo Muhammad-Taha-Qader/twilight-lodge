@@ -1,31 +1,27 @@
 "use client";
 import { useEffect, useState } from "react";
 import Card from "@/components/Card/Card";
-
-
-// interface Listing {
-//   id: string;
-//   title: string;
-//   location: string;
-//   distance: string;
-//   dateRange: string;
-//   price: number;
-//   rating: number;
-//   isFavorite: boolean;
-//   isSoldOut: boolean;
-//   images: string[];
-//   description: string;
-// }
 import { Listing } from "@/types/listing";
 
-const ListingsList = () => {
+interface ListingsListProps {
+  searchQuery: string;
+}
+
+const ListingsList: React.FC<ListingsListProps> = ({ searchQuery }) => {
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchListings = async () => {
+      setLoading(true);
       try {
-        const response = await fetch("/api/listings");
+        // Modify the API endpoint to include the search query
+        // const response = await fetch(`/api/listings/search?query=${searchQuery}`);
+                
+        const endpoint = searchQuery
+          ? `/api/listings/search?query=${searchQuery}`
+          : "/api/listings";
+        const response = await fetch(endpoint);
         const data = await response.json();
         setListings(data);
       } catch (error) {
@@ -36,7 +32,7 @@ const ListingsList = () => {
     };
 
     fetchListings();
-  }, []);
+  }, [searchQuery]); // Re-run when searchQuery changes
 
   if (loading) {
     return <p>Loading...</p>;

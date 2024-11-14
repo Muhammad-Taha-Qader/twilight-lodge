@@ -4,13 +4,19 @@ import NavLinks from "./NavLinks";
 import UserControls from "./UserControls";
 import SearchBar from "./SearchBar";
 
-const Navbar = () => {
+import { Dispatch, SetStateAction } from "react";
+interface NavbarProps {
+  searchQuery: string;
+  setSearchQuery: Dispatch<SetStateAction<string>>;
+}
+
+const Navbar = ({searchQuery, setSearchQuery} : NavbarProps) => {
   return (
     <nav className="flex justify-between items-start p-5 shadow-sm">
       <Logo />
       <div className="flex flex-col space-y-8 items-center">
         <NavLinks />
-        <SearchBar />
+        <SearchBar searchQuery={searchQuery} setSearchQuery = {setSearchQuery} />
       </div>
       <UserControls />
     </nav>

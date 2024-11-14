@@ -4,13 +4,22 @@
 // import { SearchIcon } from "@heroicons/react/outline";
 import { HiOutlineSearch } from "react-icons/hi";
 
+import { Dispatch, SetStateAction } from "react";
+interface NavbarProps {
+  searchQuery: string;
+  setSearchQuery: Dispatch<SetStateAction<string>>;
+}
 
-const SearchBar = () => {
+const SearchBar = ({searchQuery, setSearchQuery}: NavbarProps) => {
+  const handleSearchQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };  
   return (
     <div className="flex items-center space-x-4 border-2 border-my-cocoa-200 rounded-full px-8 py-3 shadow-lg hover:shadow-my-cocoa-900">
       <div className="flex flex-col">
         <span className="text-xs text-my-cocoa-400">Where</span>
-        <input type="text" placeholder="Search destinations" className="bg-transparent outline-none placeholder:text-my-cocoa-100" />
+        <input type="text" value= {searchQuery}  placeholder="Search destinations" className="bg-transparent outline-none placeholder:text-my-cocoa-100" 
+          onChange={handleSearchQuery}/>
       </div>
       <div className="flex flex-col">
         <span className="text-xs text-my-cocoa-400">Check in</span>
