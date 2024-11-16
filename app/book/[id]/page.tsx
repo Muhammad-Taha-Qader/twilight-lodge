@@ -18,6 +18,7 @@ export default function BookPage() {
   const [totalPrice, setTotalPrice] = useState<number | null>(null);
   const [bookingConfirmation, setBookingConfirmation] = useState<string | null>(null);
 
+  // Fetch listing details on component mount
   useEffect(() => {
     if (id) {
       fetch(`/api/listings/${id}`)
@@ -27,10 +28,27 @@ export default function BookPage() {
     }
   }, [id]);
 
+  // Calculate total price dynamically when dates change
+  useEffect(() => {
+    if (startDate && endDate && listing) {
+      if (new Date(startDate) >= new Date(endDate)) {
+        setFormError("Check-out date must be later than check-in date.");
+        setTotalPrice(null);
+      } else {
+        setFormError("");
+        const days = Math.ceil(
+          (new Date(endDate).getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24)
+        );
+        setTotalPrice(days * listing.price);
+      }
+    } else {
+      setTotalPrice(null); // Reset total price if dates are invalid
+    }
+  }, [startDate, endDate, listing]);
+
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Basic validation
     if (!startDate || !endDate) {
       setFormError("Please select both check-in and check-out dates.");
       return;
@@ -42,17 +60,10 @@ export default function BookPage() {
 
     setFormError(""); // Clear previous errors
 
-    // Calculate total price
-    const days = Math.ceil(
-      (new Date(endDate).getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24)
-    );
-    const calculatedPrice = days * (listing?.price || 0);
-    setTotalPrice(calculatedPrice);
-
-    // Send booking request to API
+    // Booking payload
     const bookingData = {
       listingId: id,
-      userId: id, // Replace with real user ID when available
+      userId: "mock-user-123", // Replace with real user ID when available
       startDate,
       endDate,
     };
@@ -116,8 +127,8 @@ export default function BookPage() {
       {totalPrice !== null && (
         <div className="mt-6 border-2 bg-zinc-900 border-my-cocoa-950 rounded-xl p-4 shadow">
           <h2 className="text-lg font-semibold">Booking Summary</h2>
-          <p>Check-in: {startDate}</p>
-          <p>Check-out: {endDate}</p>
+          <p>Check-in: {new Date(startDate).toLocaleDateString()}</p>
+          <p>Check-out: {new Date(endDate).toLocaleDateString()}</p>
           <p>Total Nights: {Math.ceil((new Date(endDate).getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24))}</p>
           <p>Total Price: ${totalPrice}</p>
         </div>

@@ -22,5 +22,13 @@
     "startDate": "2004-02-03",
     "endDate": "2004-04-03",
     "status": "confirmed"
+  },
+  {
+    "id": "pdyb154gw",
+    "listingId": "2",
+    "userId": "mock-user-123",
+    "startDate": "2024-11-19",
+    "endDate": "2024-11-21",
+    "status": "confirmed"
   }
 ]
