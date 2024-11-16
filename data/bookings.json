@@ -1,0 +1,26 @@
+[
+  {
+    "id": "krmbgonvb",
+    "listingId": "2",
+    "userId": "mock-user-123",
+    "startDate": "2024-11-19",
+    "endDate": "2025-03-06",
+    "status": "confirmed"
+  },
+  {
+    "id": "mmzj67dgq",
+    "listingId": "2",
+    "userId": "2",
+    "startDate": "2024-11-18",
+    "endDate": "2024-12-03",
+    "status": "confirmed"
+  },
+  {
+    "id": "npzezv35b",
+    "listingId": "2",
+    "userId": "2",
+    "startDate": "2004-02-03",
+    "endDate": "2004-04-03",
+    "status": "confirmed"
+  }
+]
