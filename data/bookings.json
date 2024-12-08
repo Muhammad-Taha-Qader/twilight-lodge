@@ -30,5 +30,13 @@
     "startDate": "2024-11-19",
     "endDate": "2024-11-21",
     "status": "confirmed"
+  },
+  {
+    "id": "utcobtfv4",
+    "listingId": "1",
+    "userId": "mock-user-123",
+    "startDate": "2024-11-13",
+    "endDate": "2024-11-16",
+    "status": "confirmed"
   }
 ]
