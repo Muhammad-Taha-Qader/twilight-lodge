@@ -1,9 +1,9 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Listing } from "@/types/listing";
-import { useRouter } from "next/navigation";
+import useAuth from "@/lib/useAuth"; // Custom hook for authentication
 import Carousel from "@/components/Card/Carousel";
 
 export default function BookPage() {
@@ -17,16 +17,28 @@ export default function BookPage() {
   const [formError, setFormError] = useState("");
   const [totalPrice, setTotalPrice] = useState<number | null>(null);
   const [bookingConfirmation, setBookingConfirmation] = useState<string | null>(null);
+  const [userId, setUserId] = useState<string | null>(null);
+
+  // Check if the user is authenticated
+  const isAuthenticated = useAuth(); // Redirects to login if user is not authenticated
 
   // Fetch listing details on component mount
   useEffect(() => {
+    if (!isAuthenticated) return; // Ensure user is logged in
+    const token = localStorage.getItem("token");
+    if (token) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const decoded: any = JSON.parse(atob(token.split(".")[1])); // Decode JWT
+      setUserId(decoded.userId); // Extract user ID from token
+    }
+
     if (id) {
       fetch(`/api/listings/${id}`)
         .then((res) => res.json())
         .then((data) => setListing(data))
         .catch((error) => console.error("Error fetching listing:", error));
     }
-  }, [id]);
+  }, [id, isAuthenticated]);
 
   // Calculate total price dynamically when dates change
   useEffect(() => {
@@ -63,7 +75,7 @@ export default function BookPage() {
     // Booking payload
     const bookingData = {
       listingId: id,
-      userId: "mock-user-123", // Replace with real user ID when available
+      userId, // Real user ID from JWT
       startDate,
       endDate,
     };
@@ -75,12 +87,20 @@ export default function BookPage() {
         body: JSON.stringify(bookingData),
       });
       const result = await response.json();
-      setBookingConfirmation(result.message);
+      if (response.ok) {
+        setBookingConfirmation(result.message);
+      } else {
+        setFormError(result.message || "Failed to create booking.");
+      }
     } catch (error) {
       console.error("Error submitting booking:", error);
       setFormError("Failed to create booking. Please try again.");
     }
   };
+
+  if (!isAuthenticated) {
+    return <p>Redirecting to login...</p>; // Handles redirection in `useAuth`
+  }
 
   if (!listing) {
     return <p>Loading...</p>;
