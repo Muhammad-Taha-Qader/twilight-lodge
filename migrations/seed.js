@@ -3,7 +3,7 @@ import Listing from "../models/Listing.js";  // Adjust path if needed
 import Booking from "../models/Booking.js";  // Adjust path if needed
 
 // const MONGODB_URI = process.env.MONGODB_URI;
-let MONGODB_URI = "mongodb+srv://mtahaqader000:QktJpqbijm2w4roB@cluster0.eceqe.mongodb.net/";
+let MONGODB_URI = "----";
 console.log("-----------> " + MONGODB_URI);
 const listingsData = [
   {
