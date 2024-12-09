@@ -2,7 +2,6 @@
   "name": "twilight-lodge",
   "version": "0.1.0",
   "private": true,
-  
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,7 +11,10 @@
   "dependencies": {
     "@heroicons/react": "^2.1.5",
     "autoprefixer": "^10.4.20",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.7",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.8.4",
     "next": "14.2.14",
     "react": "^18",
