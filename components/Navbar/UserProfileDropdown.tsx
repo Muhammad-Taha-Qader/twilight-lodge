@@ -87,7 +87,7 @@ const UserProfileDropdown: React.FC = () => {
                 {/* Admin Panel Button (Only for Admins) */}
                 {role === "admin" && (
                   <button
-                    onClick={() => handleNavigation("/admin-panel")}
+                    onClick={() => handleNavigation("/admin")}
                     className="w-full text-left px-4 py-2 hover:bg-zinc-800 rounded-lg"
                   >
                     <HiOutlineCog className="inline-block mr-2 h-5 w-5" />

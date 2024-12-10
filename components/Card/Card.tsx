@@ -92,7 +92,7 @@ const Card: React.FC<AirbnbCardProps> = ({
         </p>
 
         {/* Availability Status */}
-        <p className="text-sm font-semibold mt-2 text-red-600">
+        <p className={`text-sm font-semibold mt-2 ${isSoldOut ? "text-red-600" : "text-green-600"}`}>
           {isSoldOut ? "Sold out" : "Available"}
         </p>
       </div>

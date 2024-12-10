@@ -23,9 +23,12 @@ const ListingsList: React.FC<ListingsListProps> = ({ searchQuery }) => {
           : "/api/listings";
         const response = await fetch(endpoint);
         const data = await response.json();
-        setListings(data);
+        // setListings(data);
+        // Ensure the data is an array
+        setListings(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Error fetching listings:", error);
+        setListings([]);
       } finally {
         setLoading(false);
       }
@@ -40,21 +43,25 @@ const ListingsList: React.FC<ListingsListProps> = ({ searchQuery }) => {
 
   return (
     <div className="flex justify-center mt-10 gap-x-14 px-14 flex-wrap">
-      {listings.map((listing) => (
-        <Card
-          key={listing.id}
-          id={listing.id}
-          title={listing.title}
-          location={listing.location}
-          distance={listing.distance}
-          dateRange={listing.dateRange}
-          price={listing.price}
-          rating={listing.rating}
-          isFavorite={listing.isFavorite}
-          isSoldOut={listing.isSoldOut}
-          images={listing.images}
-        />
-      ))}
+      {listings.length > 0 ? (
+        listings.map((listing) => (
+          <Card
+            key={listing.id}
+            id={listing.id}
+            title={listing.title}
+            location={listing.location}
+            distance={listing.distance}
+            dateRange={listing.dateRange}
+            price={listing.price}
+            rating={listing.rating}
+            isFavorite={listing.isFavorite}
+            isSoldOut={listing.isSoldOut}
+            images={listing.images}
+          />
+        ))
+      ) : (
+        <p className="text-my-cocoa-300 mt-6">No listings found matching your search.</p>
+      )}
     </div>
   );
 };
