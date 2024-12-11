@@ -54,6 +54,7 @@ import Link from "next/link";
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { updateToken } from "@/lib/tokenHelper";
 
 
 const SignIn = () => {
@@ -91,7 +92,9 @@ const SignIn = () => {
 
       if (res.ok) {
         // On successful login, store the JWT token in localStorage
-        localStorage.setItem("token", data.token); 
+        // localStorage.setItem("token", data.token); 
+        //$$$ lib/tokenHelper.ts       Will now update the token in localStorage and emits a custom event to notify other components (we are using it so that over nav bar profile component can be aware of any change in login state and and can update it self accordingly, previously it wasn't needed as nav wasn't in layout and useEffect( , []) was fine). it's instead of 'localStorage.setItem("token", data.token);' in auth/signin .tsx
+        updateToken(data.token); // Save token and notify components
 
         // Redirect the user to the homepage (or dashboard)
         router.push("/");

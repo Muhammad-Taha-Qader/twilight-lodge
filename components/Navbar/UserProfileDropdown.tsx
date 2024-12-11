@@ -11,8 +11,29 @@ const UserProfileDropdown: React.FC = () => {
 
   const router = useRouter();
 
-  // Fetch user authentication state and role
-  useEffect(() => {
+  // // Fetch user authentication state and role
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     try {
+  //       // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  //       const decoded: any = JSON.parse(atob(token.split(".")[1])); // Decode JWT
+  //       setIsAuthenticated(true);
+  //       setRole(decoded.role);
+  //     } catch (error) {
+  //       console.error("Error decoding token:", error);
+  //       setIsAuthenticated(false);
+  //       setRole(null);
+  //     }
+  //   } else {
+  //     setIsAuthenticated(false);
+  //     setRole(null);
+  //   }
+  // }, []);
+
+  //$$$ lib/tokenHelper.ts       Will now update the token in localStorage and emits a custom event to notify other components (we are using it so that over nav bar profile component can be aware of any change in login state and and can update it self accordingly, previously it wasn't needed as nav wasn't in layout and useEffect( , []) was fine). it's instead of 'localStorage.setItem("token", data.token);' in auth/signin .tsx
+  //updateToken()  is now called by all login and logout functions
+  const fetchAuthState = () => {
     const token = localStorage.getItem("token");
     if (token) {
       try {
@@ -29,7 +50,24 @@ const UserProfileDropdown: React.FC = () => {
       setIsAuthenticated(false);
       setRole(null);
     }
-  }, );
+  };
+
+  useEffect(() => {
+    // Initial fetch
+    fetchAuthState();
+
+    // Listen for custom "tokenUpdated" events
+    const handleTokenUpdate = () => {
+      fetchAuthState();
+    };
+
+    window.addEventListener("tokenUpdated", handleTokenUpdate);
+
+    // Cleanup event listener
+    return () => {
+      window.removeEventListener("tokenUpdated", handleTokenUpdate);
+    };
+  }, []);
 
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);

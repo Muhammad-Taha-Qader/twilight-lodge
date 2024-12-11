@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { updateToken } from "@/lib/tokenHelper";
 
 const AuthButton = () => {
   const router = useRouter();
@@ -16,7 +17,8 @@ const AuthButton = () => {
 
   // Handle logout
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Remove the token
+    // localStorage.removeItem("token"); // Remove the token
+    updateToken(null); // Remove token and notify components
     setIsLoggedIn(false); // Update the login state
     router.push("/auth/signin"); // Redirect to the sign-in page
   };
