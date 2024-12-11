@@ -2,6 +2,7 @@
 
 export interface Listing {
     id: string;
+    userId: string; 
     title: string;
     location: string;
     distance: string;

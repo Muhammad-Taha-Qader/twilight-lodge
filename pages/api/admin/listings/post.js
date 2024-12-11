@@ -11,15 +11,20 @@ const handler = async (req, res) => {
   
   if (req.method === "POST") {
     const { title, location, distance, dateRange, price, rating, isFavorite, isSoldOut, images, description } = req.body;
+    const { user } = req; // Extracted by authMiddleware
   
     if (!title || !location || !price || !description) {
       return res.status(400).json({ message: "Missing required fields" });
     }
   
+    if (!user || !user.userId) {
+      return res.status(401).json({ message: "User not authenticated" });
+    }
     try {
       // Create the listing document without the 'id' field first
       const listing = await Listing.create({
         id: "mock",
+        userId: user.userId, // Link the listing to the current user
         title,
         location,
         distance,
@@ -49,4 +54,3 @@ const handler = async (req, res) => {
 };
   
 export default authMiddleware(handler, ["admin"]);
-  

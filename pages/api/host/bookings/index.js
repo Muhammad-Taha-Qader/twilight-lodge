@@ -10,12 +10,23 @@ const handler = async (req, res) => {
     const { userId } = req.user;
 
     try {
-      const hostListings = await Listing.find({ hostId: userId }).select("_id");
+      // Fetch all listings for the host
+      const hostListings = await Listing.find({ userId: userId }).select("_id title location");
       const hostListingIds = hostListings.map((listing) => listing._id.toString());
 
-      const bookings = await Booking.find({ listingId: { $in: hostListingIds } });
+      // Fetch bookings for these listings
+      const bookings = await Booking.find({ listingId: { $in: hostListingIds } }).lean();
 
-      res.status(200).json(bookings);
+      // Attach listing details (title, location) to each booking
+      const bookingsWithListingDetails = bookings.map((booking) => {
+        const listing = hostListings.find((l) => l._id.toString() === booking.listingId);
+        return {
+          ...booking,
+          listing: listing ? { title: listing.title, location: listing.location } : undefined,
+        };
+      });
+
+      res.status(200).json(bookingsWithListingDetails);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch bookings", error });
     }

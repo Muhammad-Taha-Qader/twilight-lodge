@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const ListingSchema = new mongoose.Schema({
   id: { type: String, required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   title: { type: String, required: true },
   location: { type: String, required: true },
   distance: { type: String },

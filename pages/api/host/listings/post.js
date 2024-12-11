@@ -7,16 +7,20 @@ const handler = async (req, res) => {
 
   if (req.method === "POST") {
     const { title, location, distance, dateRange, price, rating, isFavorite, isSoldOut, images, description } = req.body;
-    const { userId } = req.user;
+    const { user} = req;
 
     if (!title || !location || !price || !description) {
       return res.status(400).json({ message: "Missing required fields" });
+    }
+    console.log("------------------------"+ user);
+    if (!user || !user.userId) {
+      return res.status(401).json({ message: "User not authenticated" });
     }
 
     try {
       const listing = await Listing.create({
         id: "mock", // Temporarily assign mock id
-        hostId: userId,
+        userId: user.userId,
         title,
         location,
         distance,

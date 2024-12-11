@@ -10,7 +10,7 @@ const handler = async (req, res) => {
     const { userId } = req.user;
 
     try {
-      const listing = await Listing.findOneAndDelete({ id, hostId: userId });
+      const listing = await Listing.findOneAndDelete({ id, userId: userId });
 
       if (!listing) {
         return res.status(404).json({ message: "Listing not found or unauthorized" });

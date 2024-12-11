@@ -9,7 +9,7 @@ const handler = async (req, res) => {
     const { userId } = req.user; // Get host's ID from middleware
     console.log("--------------"+userId);
     try {
-      const listings = await Listing.find({ hostId: userId });
+      const listings = await Listing.find({ userId: userId });
       res.status(200).json(listings);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch listings", error });
