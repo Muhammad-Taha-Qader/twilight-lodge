@@ -83,7 +83,9 @@ export default function BookPage() {
     try {
       const response = await fetch("/api/bookings", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         body: JSON.stringify(bookingData),
       });
       const result = await response.json();

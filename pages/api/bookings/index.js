@@ -82,8 +82,10 @@
 
 import dbConnect from "../../../lib/db";
 import Booking from "../../../models/Booking";
+import { authMiddleware } from "../../../lib/authMiddleware";
 
-export default async function handler(req, res) {
+// export default async function handler(req, res) {
+const handler = async (req, res) => {
   await dbConnect();
 
   if (req.method === "POST") {
@@ -107,4 +109,6 @@ export default async function handler(req, res) {
   } else {
     res.status(405).json({ message: "Method Not Allowed" });
   }
-}
+};
+
+export default authMiddleware(handler, ["user", "host", "admin"]);
