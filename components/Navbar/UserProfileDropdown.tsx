@@ -114,7 +114,7 @@ const UserProfileDropdown: React.FC = () => {
                 {/* Host Panel Button (Only for Hosts) */}
                 {role === "host" && (
                   <button
-                    onClick={() => handleNavigation("/host-panel")}
+                    onClick={() => handleNavigation("/host")}
                     className="w-full text-left px-4 py-2 hover:bg-zinc-800 rounded-lg"
                   >
                     <HiOutlineCog className="inline-block mr-2 h-5 w-5" />
