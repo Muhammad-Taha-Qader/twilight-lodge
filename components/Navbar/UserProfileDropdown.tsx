@@ -29,7 +29,7 @@ const UserProfileDropdown: React.FC = () => {
       setIsAuthenticated(false);
       setRole(null);
     }
-  }, []);
+  }, );
 
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);

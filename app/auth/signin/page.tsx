@@ -109,17 +109,17 @@ const SignIn = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4">
-      <h1 className="text-2xl font-semibold text-center mb-6">Sign In</h1>
+    <div className="max-w-md mx-auto bg-black p-4">
+      <h1 className="text-2xl font-semibold text-center mb-6 text-my-cocoa-100">Sign In</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Email input */}
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}  // Update email state on change
-          placeholder="Email"
+          placeholder="Email" 
           required
-          className="w-full p-2 border border-gray-300 rounded-md"
+          className="w-full p-2 border border-my-cocoa-300 rounded-md shadow-sm text-my-cocoa-950 focus:outline-none focus:ring-2 focus:ring-my-cocoa-500"
         />
 
         {/* Password input */}
@@ -129,7 +129,7 @@ const SignIn = () => {
           onChange={(e) => setPassword(e.target.value)}  // Update password state on change
           placeholder="Password"
           required
-          className="w-full p-2 border border-gray-300 rounded-md"
+          className="w-full p-2 border border-my-cocoa-300 rounded-md shadow-sm text-my-cocoa-950 focus:outline-none focus:ring-2 focus:ring-my-cocoa-500"
         />
 
         {/* Error message */}
@@ -138,7 +138,8 @@ const SignIn = () => {
         {/* Submit button */}
         <button
           type="submit"
-          className="w-full p-2 bg-blue-500 text-white rounded-md"
+          // className="w-full p-2 bg-blue-500 text-white rounded-md"
+          className={`w-full py-3 text-white rounded-md ${loading ? "bg-gray-400" : "bg-my-cocoa-400 hover:bg-my-cocoa-600"} focus:outline-none`}
           disabled={loading}  // Disable button while the request is in progress
         >
           {loading ? "Signing In..." : "Sign In"}
@@ -147,7 +148,7 @@ const SignIn = () => {
 
       <p className="mt-4 text-center text-sm text-gray-600">
         Do not have an account?{" "}
-        <Link href="signup" className="text-blue-500 hover:underline">
+        <Link href="signup" className="text-my-cocoa-500 hover:underline">
           Sign up here
         </Link>
       </p>
