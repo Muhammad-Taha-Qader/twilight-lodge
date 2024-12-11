@@ -8,7 +8,7 @@ const signUp = async (req, res) => {
     return res.status(405).json({ message: "Method Not Allowed" });
   }
 
-  const { username, email, password } = req.body;
+  const { username, email, password, role } = req.body;
 
   // Validate input
   if (!username || !email || !password) {
@@ -28,7 +28,12 @@ const signUp = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create new user
-    const newUser = new User({ username, email, password: hashedPassword });
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword,
+      role: role || "user", // Default to "user" if no role is provided
+    });
 
     try {
       await newUser.save(); // Save user to database

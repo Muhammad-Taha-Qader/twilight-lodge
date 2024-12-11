@@ -71,7 +71,8 @@ const SignUp = () => {
   const [loading, setLoading] = useState(false); // To handle loading state
   const [error, setError] = useState(""); // To store error messages
   const router = useRouter();
-
+  const [role, setRole] = useState("user");
+  
   // Form validation function
   const validateForm = () => {
     if (!username || !email || !password || !confirmPassword) {
@@ -103,7 +104,7 @@ const SignUp = () => {
       const res = await fetch("/api/auth/signUp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, email, password }),
+        body: JSON.stringify({ username, email, password, role }),
       });
 
       const data = await res.json();
@@ -184,8 +185,20 @@ const SignUp = () => {
               className="w-full p-3 border border-my-cocoa-300 rounded-md shadow-sm text-my-cocoa-950 focus:outline-none focus:ring-2 focus:ring-my-cocoa-500"
             />
           </div>
+          <div>
+            <label htmlFor="role" className="block text-sm font-medium text-my-cocoa-50">Role</label>
+            <select
+              id="role"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              required
+              className="w-full p-3 border border-my-cocoa-300 rounded-md shadow-sm text-my-cocoa-950 focus:outline-none focus:ring-2 focus:ring-my-cocoa-500"
+            >
+              <option value="user">User</option>
+              <option value="host">Host</option>
+            </select>
+          </div>
 
-          {/* Error message */}
           {error && <p className="text-red-500 text-sm">{error}</p>}
 
           {/* Submit button */}
