@@ -5,7 +5,7 @@ import useAuth from "../../lib/useAuth";
 import ListingsManager from "../../components/Host/HostListingsManager";
 import BookingsManager from "../../components/Host/HostBookingsManager";
 import Loader from "@/components/Animations/Loader";
-import {  FaHome, FaChevronRight, FaArrowLeft } from "react-icons/fa";
+import { FaHome, FaChevronRight, FaArrowLeft } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import socket from "@/lib/socket"; // Import the Socket.IO client instance
 
@@ -13,9 +13,25 @@ const HostDashboard = () => {
   const router = useRouter();
   const isAuthorized = useAuth(["host"]);
   const [alerts, setAlerts] = useState<string[]>([]); // State to hold real-time alerts
+  //Socket.IO 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [userId, setUserId] = useState<string | null>(null);
 
+  //Socket.IO
   useEffect(() => {
     if (!isAuthorized) return;
+
+    //Get the host's userId (from auth token or other source)
+    const token = localStorage.getItem("token");
+    if (token) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const decoded: any = JSON.parse(atob(token.split(".")[1])); // Decode JWT
+      const userId = decoded.userId; // Extract host's userId
+      setUserId(userId);
+
+      // Register the host on the Socket.IO server
+      socket.emit("register-host", userId);
+    }
 
     // Listen for real-time booking alerts
     socket.on("host-alert", (booking) => {
@@ -56,7 +72,7 @@ const HostDashboard = () => {
       {/* Page Header */}
       <h1 className="text-3xl font-bold text-my-cocoa-100 mb-6">Host Dashboard</h1>
 
-      {/* Alerts Section */}
+      {/* Socket.IO Alerts Section */}
       <div className="bg-zinc-800 border border-my-cocoa-700 rounded-lg p-4 mb-6">
         <h2 className="text-xl font-semibold text-my-cocoa-100 mb-2">Real-Time Alerts</h2>
         {alerts.length > 0 ? (

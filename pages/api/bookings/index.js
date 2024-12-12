@@ -1,5 +1,6 @@
 import dbConnect from "../../../lib/db";
 import Booking from "../../../models/Booking";
+import Listing from "../../../models/Listing";
 import { authMiddleware } from "../../../lib/authMiddleware";
 import { io } from "socket.io-client";
 
@@ -19,6 +20,13 @@ const handler = async (req, res) => {
     }
 
     try {
+      //Socket.IO Find the listing to get the host's userId
+      const listing = await Listing.findById(listingId);
+      if (!listing) {
+        return res.status(404).json({ message: "Listing not found" });
+      }
+      const listingUserId = listing.userId; // Host's userId
+
       const booking = await Booking.create({
         listingId,
         userId,
@@ -26,13 +34,14 @@ const handler = async (req, res) => {
         endDate,
       });
 
-      // Emit a real-time event to notify hosts
+      //Socket.IO Emit a real-time event to notify the specific host
       socket.emit("new-booking", {
         listingId,
         userId,
         startDate,
         endDate,
         bookingId: booking._id,
+        listingUserId, // Pass the host's userId
       });
 
       res.status(201).json({ message: "Booking created", booking });
