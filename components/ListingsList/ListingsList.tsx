@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Card from "@/components/Card/Card";
 import { Listing } from "@/types/listing";
+import Loader from "@/components/Animations/Loader";
 
 interface ListingsListProps {
   searchQuery: string;
@@ -38,7 +39,10 @@ const ListingsList: React.FC<ListingsListProps> = ({ searchQuery }) => {
   }, [searchQuery]); // Re-run when searchQuery changes
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (<div>
+      <Loader/>
+    </div>);
+    // return <p>Loading...</p>;
   }
 
   return (

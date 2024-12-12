@@ -6,6 +6,7 @@ import { Listing } from "@/types/listing";
 import Carousel from "@/components/Card/Carousel";
 import { useRouter } from "next/navigation"; 
 import Link from "next/link";
+import Loader from "@/components/Animations/Loader";
 
 
 export default function ListingDetailsPage() {
@@ -29,7 +30,7 @@ export default function ListingDetailsPage() {
   }, [id]);
 
   if (!listing) {
-    return <p>Loading...</p>;
+    return <Loader/>;
   }
 
   return (

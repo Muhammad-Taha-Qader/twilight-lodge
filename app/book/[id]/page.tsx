@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Listing } from "@/types/listing";
 import useAuth from "@/lib/useAuth"; // Custom hook for authentication
 import Carousel from "@/components/Card/Carousel";
+import Loader from "@/components/Animations/Loader";
 
 export default function BookPage() {
   const params = useParams() as { id: string };
@@ -105,7 +106,7 @@ export default function BookPage() {
   }
 
   if (!listing) {
-    return <p>Loading...</p>;
+    return <Loader/>;
   }
 
   return (

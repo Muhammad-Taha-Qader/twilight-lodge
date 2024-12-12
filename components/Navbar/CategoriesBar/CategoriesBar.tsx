@@ -181,9 +181,9 @@ const CategoriesBar: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-between mx-5">
+    <div className="flex items-center lg:justify-between justify-center mx-2 lg:mx-5">
       {/* Scrollable Categories with arrows */}
-      <div className="flex-grow max-w-[80%] overflow-x-auto">
+      <div className="flex-grow max-w-max md:max-w-[90%] lg:max-w-[80%] overflow-x-auto">
         <div className="relative flex whitespace-nowrap">
           {/* Left arrow - blur */}
           {!isLeftDisabled && (
@@ -206,7 +206,7 @@ const CategoriesBar: React.FC = () => {
           {/* Scrollable Categories */}
           <div
             ref={scrollRef}
-            className="flex items-center space-x-6 overflow-x-auto py-2 border-b scroll-smooth scrollbar-hide max-w-full whitespace-nowrap ml-12 mr-6"
+            className="flex items-center space-x-6 overflow-x-auto py-2 border-b scroll-smooth scrollbar-hide max-w-full whitespace-nowrap lg:ml-12 lg:mr-6"
           >
             {categories.map((category, index) => (
               <CategoryButton
@@ -239,7 +239,7 @@ const CategoriesBar: React.FC = () => {
       </div>
 
       {/* Filters and Toggle */}
-      <div className="flex-none max-w-[20%] ml-4 py-8 lg:block hidden">
+      <div className="flex-none md:max-w-[10%] lg:max-w-[20%] mx-4 py-8 lg:block hidden">
         <div className="flex items-center space-x-4 ml-4">
           <button className="flex items-center gap-x-3 px-4 py-2 border rounded-lg hover:border-my-cocoa-200">
             <MdOutlineCategory />

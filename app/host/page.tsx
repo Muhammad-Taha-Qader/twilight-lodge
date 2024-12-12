@@ -3,12 +3,13 @@
 import useAuth from "../../lib/useAuth";
 import ListingsManager from "../../components/Host/HostListingsManager";
 import BookingsManager from "../../components/Host/HostBookingsManager";
+import Loader from "@/components/Animations/Loader";
 
 const HostDashboard = () => {
   const isAuthorized = useAuth(["host"]);
 
   if (!isAuthorized) {
-    return <p>Loading...</p>;
+    return <Loader/>;
   }
 
   return (

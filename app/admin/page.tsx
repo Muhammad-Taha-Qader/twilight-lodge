@@ -3,12 +3,13 @@
 import useAuth from "../../lib/useAuth";
 import ListingsManager from "../../components/Admin/ListingsManager";
 import BookingsManager from "../../components/Admin/BookingsManager";
+import Loader from "@/components/Animations/Loader";
 
 const AdminPanel = () => {
   const isAuthorized = useAuth(["admin"]);
 
   if (!isAuthorized) {
-    return <p>Loading...</p>;
+    return <Loader/>;
   }
 
   return (

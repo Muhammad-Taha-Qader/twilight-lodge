@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { HiOutlineLogout, HiOutlineLogin, HiOutlineUser, HiOutlineCog, HiOutlineMenu } from "react-icons/hi";
+import { updateToken } from "@/lib/tokenHelper";
 
 const UserProfileDropdown: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -79,7 +80,8 @@ const UserProfileDropdown: React.FC = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    updateToken(null); // Remove token and notify components
+    // localStorage.removeItem("token");
     setIsAuthenticated(false);
     setRole(null);
     router.push("/auth/signin"); // Redirect to login page after logout

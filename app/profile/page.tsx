@@ -24,6 +24,7 @@
 
 import { useState, useEffect } from "react";
 import useAuth from "../../lib/useAuth";
+import Loader from "@/components/Animations/Loader";
 
 interface User {
   username: string;
@@ -91,7 +92,7 @@ const ProfilePage = () => {
   }
 
   if (loading) {
-    return <p className="text-my-cocoa-100">Loading profile...</p>;
+    return <Loader/>;
   }
 
   if (error) {
