@@ -239,7 +239,7 @@ const CategoriesBar: React.FC = () => {
       </div>
 
       {/* Filters and Toggle */}
-      <div className="flex-none max-w-[20%] ml-4 py-8">
+      <div className="flex-none max-w-[20%] ml-4 py-8 lg:block hidden">
         <div className="flex items-center space-x-4 ml-4">
           <button className="flex items-center gap-x-3 px-4 py-2 border rounded-lg hover:border-my-cocoa-200">
             <MdOutlineCategory />

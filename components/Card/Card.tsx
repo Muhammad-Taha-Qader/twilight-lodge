@@ -47,14 +47,15 @@ const Card: React.FC<AirbnbCardProps> = ({
   return (
     <div
       onClick={handleCardClick}
-      className="max-w-sm rounded-lg overflow-hidden shadow-lg relative border border-gray-200 cursor-pointer"
+      className="max-w-sm w-80 md:w-96 rounded-lg overflow-hidden shadow-lg relative border border-gray-200 cursor-pointer"
     >
       {/* Image Carousel */}
       <Carousel images={images} />
 
       {/* Guest Favorite Badge */}
       {isFavorite && (
-        <span className="absolute top-2 left-2 bg-white text-black text-sm font-semibold px-2 py-1 rounded-full shadow-md">
+        // <span className="absolute top-2 left-2 bg-white text-black text-sm font-semibold px-2 py-1 rounded-full shadow-md">
+        <span className="absolute top-[5%] left-[5%] bg-white text-black text-xs md:text-sm font-semibold px-1.5 md:px-2 py-0.5 md:py-1 rounded-full shadow-md">
           Guest favorite
         </span>
       )}
@@ -65,7 +66,8 @@ const Card: React.FC<AirbnbCardProps> = ({
           e.stopPropagation(); // Prevent card click when sharing
           togglePopup();
         }}
-        className="absolute top-2 right-2 bg-white hover:bg-gray-100 p-2 rounded-full shadow-md z-20"
+        className="absolute top-[5%] right-[5%] bg-white hover:bg-gray-100 p-1.5 md:p-2 rounded-full shadow-md z-20"
+        // className="absolute top-2 right-2 bg-white hover:bg-gray-100 p-2 rounded-full shadow-md z-20"
       >
         <HiOutlineShare className="text-gray-700" />
       </button>
@@ -75,7 +77,7 @@ const Card: React.FC<AirbnbCardProps> = ({
       <div className="p-4">
         {/* Location and Rating */}
         <div className="flex justify-between items-center mb-2">
-          <h2 className="text-lg font-bold">{location}</h2>
+          <h2 className="text-lg font-bold truncate">{location}</h2>
           <div className="flex items-center text-sm text-gray-700">
             <AiFillStar className="text-yellow-500 mr-1" />
             <span>{rating.toFixed(2)}</span>

@@ -89,7 +89,7 @@ const UserProfileDropdown: React.FC = () => {
     <div className="relative">
       {/* Profile Icon Button */}
       <button
-        className="flex items-center space-x-2 border-2 px-6 py-3 rounded-full shadow-sm border-my-cocoa-400 hover:border-my-cocoa-600 hover:text-my-cocoa-600"
+        className="flex items-center px-4 py-2 space-x-2 border-2 md:px-6 md:py-3 mt-3 rounded-full shadow-sm border-my-cocoa-400 hover:border-my-cocoa-600 hover:text-my-cocoa-600"
         onClick={toggleDropdown}
       >
         <HiOutlineMenu className="h-6 w-6 text-my-cocoa-400" />

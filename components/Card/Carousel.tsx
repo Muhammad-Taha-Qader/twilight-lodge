@@ -23,8 +23,8 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
   };
 
   return (
-    // <div className="relative ">
-    <div className="relative w-96 h-64 overflow-hidden">
+    // <div className="relative ">  w-96->384 by h-64->256 = 1.5 ratio
+    <div className="relative w-80 h-[213px]  md:w-96 md:h-64 overflow-hidden">
       {/* <img src={images[currentIndex]} alt={`Slide ${currentIndex}`} className="w-full h-64 object-cover" /> */}
       <Image
         src={images[currentIndex]}

@@ -42,15 +42,15 @@ const SearchBar = ({searchQuery, setSearchQuery}: NavbarProps) => {
         <input type="text" value= {inputValue}  placeholder="Search destinations" className="bg-transparent outline-none placeholder:text-my-cocoa-100" 
           onChange={handleInputChange}/>
       </div>
-      <div className="flex flex-col">
+      <div className="md:flex md:flex-col  hidden ">
         <span className="text-xs text-my-cocoa-400">Check in</span>
         <input type="text" placeholder="Add dates" className="bg-transparent outline-none placeholder:text-my-cocoa-100" />
       </div>
-      <div className="flex flex-col">
+      <div className="md:flex md:flex-col  hidden ">
         <span className="text-xs text-my-cocoa-400">Check out</span>
         <input type="text" placeholder="Add dates" className="bg-transparent outline-none placeholder:text-my-cocoa-100" />
       </div>
-      <div className="flex flex-col">
+      <div className="md:flex md:flex-col  hidden ">
         <span className="text-xs text-my-cocoa-400">Who</span>
         <input type="text" placeholder="Add guests" className="bg-transparent outline-none placeholder:text-my-cocoa-100" />
       </div>

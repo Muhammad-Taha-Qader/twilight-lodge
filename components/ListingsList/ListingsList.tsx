@@ -42,7 +42,7 @@ const ListingsList: React.FC<ListingsListProps> = ({ searchQuery }) => {
   }
 
   return (
-    <div className="flex justify-center mt-10 gap-x-14 px-14 flex-wrap">
+    <div className="flex justify-center mt-10 gap-x-14 gap-y-4 lg:gap-y-14 px-4 md:px-14 flex-wrap">
       {listings.length > 0 ? (
         listings.map((listing) => (
           <Card
