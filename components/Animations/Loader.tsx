@@ -10,7 +10,9 @@ const Loader = () => {
 
   useEffect(() => {
     const fetchAnimation = async () => {
-      const response = await fetch("/animations/LoadingcircleCompleting.json");
+      // const response = await fetch("/animations/LoadingcircleCompleting.json");
+      const response = await fetch("/animations/LoadingBlueRing2.json");
+      // const response = await fetch("/animations/LoadingPlanClouds.json");
       const data = await response.json();
       setAnimationData(data);
     };

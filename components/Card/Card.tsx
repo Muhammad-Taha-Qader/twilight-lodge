@@ -47,7 +47,7 @@ const Card: React.FC<AirbnbCardProps> = ({
   return (
     <div
       onClick={handleCardClick}
-      className="max-w-sm w-80 md:w-96 rounded-lg overflow-hidden shadow-lg relative border border-gray-200 cursor-pointer"
+      className="max-w-sm w-80 md:w-96 rounded-lg overflow-hidden shadow-lg relative cursor-pointer"
     >
       {/* Image Carousel */}
       <Carousel images={images} />
@@ -78,19 +78,19 @@ const Card: React.FC<AirbnbCardProps> = ({
         {/* Location and Rating */}
         <div className="flex justify-between items-center mb-2">
           <h2 className="text-lg font-bold truncate">{location}</h2>
-          <div className="flex items-center text-sm text-gray-700">
+          <div className="flex items-center text-sm text-gray-300">
             <AiFillStar className="text-yellow-500 mr-1" />
             <span>{rating.toFixed(2)}</span>
           </div>
         </div>
 
         {/* Distance and Date Range */}
-        <p className="text-sm text-gray-500">{distance} away</p>
-        <p className="text-sm text-gray-500">{dateRange}</p>
+        <p className="text-sm text-gray-400">{distance} away</p>
+        <p className="text-sm text-gray-400">{dateRange}</p>
 
         {/* Price */}
-        <p className="text-lg font-bold mt-2 text-gray-900">
-          ${price} <span className="text-sm font-normal text-gray-500">night</span>
+        <p className="text-lg font-bold mt-2 text-my-cocoa-50">
+          ${price} <span className="text-sm font-normal text-gray-400">night</span>
         </p>
 
         {/* Availability Status */}
