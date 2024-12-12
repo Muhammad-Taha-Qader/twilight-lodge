@@ -31,7 +31,7 @@ export default function Home() {
       {/* Join Menu */}
       <div className="relative flex flex-row space-x-2 justify-center items-center my-16">
         <div className="flex flex-col justify-center items-center">
-          <p className="mt-1 text-3xl font-bold mb-9">Join Now</p>
+          <p className="mt-1 text-3xl font-bold mb-16 md:mb-9">Join Now</p>
           <div className="flex flex-col justify-center items-center space-y-3">
             <AuthButton />
             <div className="flex flex-row">

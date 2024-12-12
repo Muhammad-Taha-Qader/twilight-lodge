@@ -1,4 +1,8 @@
-import Lottie from "lottie-react";
+// import Lottie from "lottie-react";
+"use client";
+import dynamic from "next/dynamic";
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+
 import { useEffect, useState } from "react";
 
 const Loader = () => {
