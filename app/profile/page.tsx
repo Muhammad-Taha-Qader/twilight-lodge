@@ -25,6 +25,8 @@
 import { useState, useEffect } from "react";
 import useAuth from "../../lib/useAuth";
 import Loader from "@/components/Animations/Loader";
+import {  FaHome, FaChevronRight, FaArrowLeft } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 interface User {
   username: string;
@@ -41,6 +43,7 @@ interface Booking {
 }
 
 const ProfilePage = () => {
+  const router = useRouter();
   const isAuthorized = useAuth(["user", "host", "admin"]); // Allow all authenticated roles
   const [user, setUser] = useState<User | null>(null);
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -100,21 +103,39 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-zinc-900 rounded-lg shadow-md">
-      <h1 className="text-3xl font-bold mb-6 text-my-cocoa-100">Your Profile</h1>
+    <div className="max-w-4xl md:mx-auto p-6 mx-4 bg-zinc-900 rounded-lg shadow-md">
+      {/* Navigation */}
+      <div className="w-full flex justify-between items-center mb-4">
+        <nav className="mb-6 flex items-center text-my-cocoa-500 space-x-2 text-sm">
+          <FaHome className="text-my-cocoa-700" />
+          <FaChevronRight />
+          <button
+            onClick={() => router.push("/")}
+            className="hover:underline hover:text-my-cocoa-700 transition"
+          >
+                          Home
+          </button>
+          <FaChevronRight />
+          <span className="text-my-cocoa-700 font-semibold">Profile</span>
+        </nav>
+      </div>
+      {/* Page */}
 
       {/* User Details */}
       {user && (
-        <div className="mb-8">
-          <p className="text-lg text-my-cocoa-200 mb-2">
-            <strong>Username:</strong> {user.username}
-          </p>
-          <p className="text-lg text-my-cocoa-200 mb-2">
-            <strong>Email:</strong> {user.email}
-          </p>
-          <p className="text-lg text-my-cocoa-200">
-            <strong>Role:</strong> {user.role}
-          </p>
+        <div>
+          <h1 className="text-3xl font-bold mb-6 text-my-cocoa-100">Welcome {user.username}!</h1>
+          <div className="mb-8">
+            <p className="text-lg text-my-cocoa-200 mb-2">
+              <strong>Username:</strong> {user.username}
+            </p>
+            <p className="text-lg text-my-cocoa-200 mb-2">
+              <strong>Email:</strong> {user.email}
+            </p>
+            <p className="text-lg text-my-cocoa-200">
+              <strong>Role:</strong> {user.role}
+            </p>
+          </div>
         </div>
       )}
 
@@ -149,6 +170,18 @@ const ProfilePage = () => {
       ) : (
         <p className="text-my-cocoa-200">You have no booking history.</p>
       )}
+
+      {/* Footer Navigation */}
+      <div className="w-full flex justify-center items-center mt-6">
+        <button
+          type="button"
+          onClick={() => router.push("/")}
+          className="flex items-center text-my-cocoa-50 bg-my-cocoa-500 px-4 py-2 rounded-lg hover:bg-my-cocoa-600 transition-all"
+        >
+          <FaArrowLeft className="ml-2" />
+                      Back to Home
+        </button>
+      </div>
     </div>
   );
 };

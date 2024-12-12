@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Listing } from "@/types/listing";
+import Image from "next/image";
 
 const HostListingsManager = () => {
   const [listings, setListings] = useState<Listing[]>([]);
@@ -106,6 +107,7 @@ const HostListingsManager = () => {
   return (
     <div className="mt-8">
       <h2 className="text-2xl font-bold text-my-cocoa-100 mb-4">Host Listings Management</h2>
+      <h2 className="text-lg font-bold text-my-cocoa-500 mb-4">Create New Listing</h2>
       <form onSubmit={handleCreateListing} className="space-y-4 mb-6">
         {Object.keys(form).map((key) => (
           <div key={key}>
@@ -123,7 +125,8 @@ const HostListingsManager = () => {
           Create Listing
         </button>
       </form>
-      <ul>
+      <h2 className="text-lg font-bold text-my-cocoa-500 mb-4">Manage Your Previous Listings</h2>
+      {/* <ul>
         {listings.map((listing) => (
           <li key={listing.id} className="flex justify-between items-center mb-2">
             <p>{listing.title}</p>
@@ -139,7 +142,62 @@ const HostListingsManager = () => {
             </button>
           </li>
         ))}
-      </ul>
+      </ul> */}
+      <div className="overflow-x-auto bg-zinc-900 border border-my-cocoa-400 rounded-lg shadow-md">
+        <table className="min-w-full text-my-cocoa-50">
+          <thead className="bg-my-cocoa-600 text-white">
+            <tr>
+              <th className="py-2 px-4 text-left">Title</th>
+              <th className="py-2 px-4 text-left">Price</th>
+              <th className="py-2 px-4 text-left">Status</th>
+              <th className="py-2 px-4 text-left">Image</th>
+              <th className="py-2 px-4 text-left">Location</th>
+              <th className="py-2 px-4 text-left">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {listings.length > 0 ? (
+              listings.map((listing) => (
+                <tr key={listing.id} className="border-b border-my-cocoa-400">
+                  <td className="py-2 px-4">{listing.title}</td>
+                  <td className="py-2 px-4">${listing.price}</td>
+                  <td
+                    className={`py-2 px-4 text-sm font-semibold ${
+                      listing.isSoldOut ? "text-red-600" : "text-green-600"
+                    }`}
+                  >
+                    {listing.isSoldOut ? "Sold out" : "Available"}
+                  </td>
+                  <td className="py-2 px-4"><Image 
+                    src={listing.images[0]}
+                    alt={"Image 0"}
+                    // fill
+                    width={1920}
+                    height={256}
+                    className="object-cover w-full h-7"
+                    sizes="100vw"
+                  /> </td>
+                  <td className="py-2 px-4">{listing.location}</td>
+                  <td className="py-2 px-4">
+                    <button
+                      onClick={() => handleDeleteListing(listing.id)}
+                      className="text-red-500 hover:underline"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={4} className="py-4 px-4 text-center text-my-cocoa-200">
+                  No listings found.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

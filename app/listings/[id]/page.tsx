@@ -35,8 +35,6 @@ export default function ListingDetailsPage() {
 
   return (
     <div className="flex flex-col items-center px-4 py-8 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-
-
       {/* Navigation */}
       <div className="w-full flex justify-between items-center mb-6">
         <nav className="mb-6 flex items-center text-my-cocoa-500 space-x-2 text-sm">
@@ -51,12 +49,7 @@ export default function ListingDetailsPage() {
           <FaChevronRight />
           <span className="text-my-cocoa-700 font-semibold">Listing</span>
         </nav>
-
       </div>
-
-      {/* Navigation Path */}
-      
-      
 
       {/* Carousel */}
       <div className="max-w-sm w-80 md:w-96 rounded-lg overflow-hidden shadow-lg relative border border-my-cocoa-900">
