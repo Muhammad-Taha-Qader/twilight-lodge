@@ -6,6 +6,7 @@ import { Listing } from "@/types/listing";
 import useAuth from "@/lib/useAuth"; // Custom hook for authentication
 import Carousel from "@/components/Card/Carousel";
 import Loader from "@/components/Animations/Loader";
+import { FaHome, FaChevronRight, FaCalendarAlt, FaDollarSign, FaArrowLeft } from "react-icons/fa";
 
 export default function BookPage() {
   const params = useParams() as { id: string };
@@ -111,12 +112,44 @@ export default function BookPage() {
 
   return (
     <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4">{listing.title}</h1>
-      <Carousel images={listing.images} />
-      <p className="text-my-cocoa-200">{listing.location}</p>
-      <p className="text-xl font-semibold text-green-600 mb-4">${listing.price} per night</p>
-      <p className="text-my-cocoa-100">{listing.description}</p>
+      {/* Navigation Path */}
+      <nav className="mb-6 flex items-center text-my-cocoa-500 space-x-2 text-sm">
+        <FaHome className="text-my-cocoa-700" />
+        <FaChevronRight />
+        <button
+          onClick={() => router.push("/")}
+          className="hover:underline hover:text-my-cocoa-700 transition"
+        >
+          Home
+        </button>
+        <FaChevronRight />
+        <button
+          onClick={() => router.push(`/listings/${id}`)}
+          className="hover:underline hover:text-my-cocoa-700 transition"
+        >
+          Listing
+        </button>
+        <FaChevronRight />
+        <span className="text-my-cocoa-700 font-semibold">Booking</span>
+      </nav>
 
+      {/* Listing Details */}
+      <h1 className="text-2xl font-bold text-my-cocoa-700 mb-4">{listing.title}</h1>
+      {/* Carousel */}
+      <div className="max-w-sm w-80 md:w-96 rounded-lg overflow-hidden shadow-lg relative border border-my-cocoa-900">
+        <Carousel images={listing.images} />
+      </div>
+      <p className="flex items-center text-my-cocoa-200 mt-4">
+        <FaCalendarAlt className="mr-2 text-my-cocoa-500" />
+        {listing.location}
+      </p>
+      <p className="flex items-center text-xl font-semibold text-green-600 mb-4">
+        <FaDollarSign className="mr-1" />
+        {listing.price} per night
+      </p>
+      <p className="text-my-cocoa-100 leading-relaxed mb-6 text-justify">{listing.description}</p>
+
+      {/* Form and Summary */}
       <form onSubmit={handleFormSubmit} className="mt-6 space-y-4">
         <div>
           <label className="block text-sm mb-1 text-my-cocoa-400">Check-in</label>
@@ -161,13 +194,17 @@ export default function BookPage() {
         <p className="text-green-600 mt-4">{bookingConfirmation}</p>
       )}
 
-      <button
-        type="button"
-        onClick={() => router.push(`/listings/${id}`)}
-        className="bg-my-cocoa-500 text-my-cocoa-50 px-7 py-4 rounded-lg mt-4"
-      >
-        Back to Listing
-      </button>
+      {/* Footer Navigation */}
+      <div className="w-full flex justify-center items-center mt-6">
+        <button
+          type="button"
+          onClick={() => router.push(`/listings/${id}`)}
+          className="flex items-center text-my-cocoa-50 bg-my-cocoa-500 px-4 py-2 rounded-lg hover:bg-my-cocoa-600 transition-all"
+        >
+          <FaArrowLeft className="ml-2" />
+                Back to Listing
+        </button>
+      </div>
     </div>
   );
 }
